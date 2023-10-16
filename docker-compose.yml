@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  todo-app:
+    build: .
+    ports:
+      - 2345:3000
+    working_dir: /app
+    networks:
+      - todo_network_example
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456789
+      MYSQL_DB: todo_database
+  mysql-todo-app:
+    image: mysql:latest
+    networks:
+      todo_network_example:
+        aliases:
+          - mysql
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456789
+      MYSQL_DATABASE: todo_database
+
+volumes:
+  mysql:
+    external: true
+networks:
+  todo_network_example:    
+         
