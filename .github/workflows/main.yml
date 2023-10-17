@@ -17,6 +17,9 @@ jobs:
       - name: Pruebas
         run: |
           npm run test 
+      - name: Cypress Test
+        run: |
+          echo "Hola"    
   build:
     runs-on: ubuntu-20.04
     steps:
